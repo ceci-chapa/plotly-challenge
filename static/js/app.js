@@ -1,23 +1,25 @@
-
+// Linking the json file
+const url = "static/js/samples.json";
 
 function generatePlots(patientId) {
   d3.json(url).then(function (data) {
     var selectedPatientMD = data.metadata.filter(row => row.id == patientId)[0]
     var selectedPatientSamples = data.samples.filter(row => row.id == patientId)[0]
-    var patientOTUs = data.samples.filter(row => row.otu_ids)[0]
-    console.log('otus', patientOTUs)
-  
+    // var patientOTUs = data.samples.filter(row => row.otu_ids)[0]
+    console.log('otus', selectedPatientSamples.otu_ids.slice(0, 10))
+
     // Use sample_values as the x for the bar chart.
 
     // Use otu_ids as the y for the bar chart.
-    
+
     // Use otu_labels as the hovertext for the chart.
 
 
     var trace1 = {
-      x: ['Feature A', 'Feature B', 'Feature C', 'Feature D', 'Feature E'],
-      y: [20, 14, 23, 25, 22],
-      marker: {      },
+      x: selectedPatientSamples.sample_values.slice(0, 10).reverse(),
+      y: selectedPatientSamples.otu_ids.slice(0, 10).map(otu_id => `OTU #${otu_id}`).reverse(),
+      text: selectedPatientSamples.otu_labels.slice(0, 10).reverse(),
+      marker: {},
       type: 'bar',
       orientation: 'h'
     };
@@ -82,40 +84,24 @@ function generatePlots(patientId) {
     var layout = { width: 600, height: 400 };
     Plotly.newPlot('gauge', data, layout);
 
+    //Start of demographic section
+
+    var demoInfo = d3.select('.panel-body')
+    demoInfo.html("")
+    Object.entries(selectedPatientMD).forEach(([key, value]) => {
+      demoInfo.append('h5').text(`${key} : ${value}`)
+    });
+
   })
 }
 
-function newPatientSelected(currentPatientId) {
-  console.log(currentPatientId)
-  generatePlots(currentPatientId)
-
-}
-
-// Linking the json file
-const url = "static/js/samples.json";
-
-// Promise Pending
-// const dataPromise = d3.json(url);
-// console.log("Data Promise: ", dataPromise);
-
-// // Fetch the JSON data and console log it
+//This code runs on startup
 d3.json(url).then(function (data) {
-  console.log(data.names);
 
   var dropdown = d3.select('#selDataset')
   data.names.forEach(patientId => {
     dropdown.append('option').property('value', patientId).text(patientId)
   });
-
-  var demoInfo = d3.select('.panel-body')
-  data.metadata.forEach(patientInfo => {
-    demoInfo.append('option', patientInfo).text(patientInfo)
-    console.log('test', demoInfo)
-  });
-
-  // selectedPatientMD
-
-
 
   generatePlots(data.names[0])
 
