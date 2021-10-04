@@ -24,7 +24,7 @@ function generatePlots(patientId) {
     var data = [trace1];
 
     var layout = {
-      title: 'Least Used Feature'
+      title: 'Top 10 OTUs'
     };
 
     Plotly.newPlot('bar', data, layout);
@@ -70,7 +70,7 @@ function generatePlots(patientId) {
       {
         domain: { x: [0, 1], y: [0, 1] },
         value: selectedPatientMD.wfreq,
-        title: { text: "Speed" },
+        title: { text: "Belly Button Washing Frequency" },
         type: "indicator",
         mode: "gauge+number",
         delta: { reference: 400 },
