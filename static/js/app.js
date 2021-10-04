@@ -4,7 +4,8 @@ function generatePlots(patientId) {
   d3.json(url).then(function (data) {
     var selectedPatientMD = data.metadata.filter(row => row.id == patientId)[0]
     var selectedPatientSamples = data.samples.filter(row => row.id == patientId)[0]
-    console.log(selectedPatientSamples)
+    var patientOTUs = data.samples.filter(row => row.otu_ids)[0]
+    console.log('otus', patientOTUs)
   
     // Use sample_values as the x for the bar chart.
 
@@ -105,6 +106,16 @@ d3.json(url).then(function (data) {
   data.names.forEach(patientId => {
     dropdown.append('option').property('value', patientId).text(patientId)
   });
+
+  var demoInfo = d3.select('.panel-body')
+  data.metadata.forEach(patientInfo => {
+    demoInfo.append('option', patientInfo).text(patientInfo)
+    console.log('test', demoInfo)
+  });
+
+  // selectedPatientMD
+
+
 
   generatePlots(data.names[0])
 
