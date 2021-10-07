@@ -20,7 +20,7 @@ function generatePlots(patientId) {
       y: selectedPatientSamples.otu_ids.slice(0, 10).map(otu_id => `OTU #${otu_id}`).reverse(),
       text: selectedPatientSamples.otu_labels.slice(0, 10).reverse(),
       marker: {
-        color: 'rgb(194, 83, 83)'
+        color: '#9cdbbf'
       },
       type: 'bar',
       orientation: 'h'

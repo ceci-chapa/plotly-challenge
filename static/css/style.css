@@ -1,0 +1,28 @@
+.jumbotron {
+    background-color: #c7e7d7;
+
+}
+
+.well {
+    border: none;
+    border-radius: 0px;
+    background-color: rgb(214, 214, 214);
+}
+
+.panel-primary> .panel-heading {
+    background-color: rgb(122, 122, 122);
+    border-color: rgb(122, 122, 122);
+}
+
+.panel-primary {
+    border-color: rgb(122, 122, 122);
+}
+
+.panel {
+    border-radius: 0px;
+}
+
+.panel-heading{
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+}
