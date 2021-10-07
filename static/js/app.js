@@ -8,6 +8,8 @@ function generatePlots(patientId) {
     // var patientOTUs = data.samples.filter(row => row.otu_ids)[0]
     console.log('otus', selectedPatientSamples.otu_ids.slice(0, 10))
 
+    var config = {responsive: true}
+
     // Use sample_values as the x for the bar chart.
 
     // Use otu_ids as the y for the bar chart.
@@ -60,11 +62,11 @@ function generatePlots(patientId) {
     var layout = {
       title: 'Marker Size',
       showlegend: false,
-      height: 600,
-      width: 600
+      // height: 600,
+      // width: 800
     };
 
-    Plotly.newPlot('bubble', data, layout);
+    Plotly.newPlot('bubble', data, layout, config);
 
 
     // Single gauge starts here
