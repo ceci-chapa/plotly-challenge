@@ -79,12 +79,15 @@ function generatePlots(patientId) {
         type: "indicator",
         mode: "gauge+number",
         delta: { reference: 400 },
+        // style: {fill: 'rgb(194, 83, 83)'},
         gauge: { axis: { range: [null, 10] } }
       }
     ];
 
+    var layout = {style: {color: 'rgb(194, 83, 83)'} };
 
-    Plotly.newPlot('gauge', data, config);
+
+    Plotly.newPlot('gauge', data, layout, config);
 
 
     //Start of demographic section
