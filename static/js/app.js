@@ -32,7 +32,7 @@ function generatePlots(patientId) {
       title: 'Top 10 OTUs'
     };
 
-    Plotly.newPlot('bar', data, layout);
+    Plotly.newPlot('bar', data, layout, config);
 
     // Bubble Chart Begins Here
 
@@ -53,7 +53,8 @@ function generatePlots(patientId) {
       y: selectedPatientSamples.sample_values,
       mode: 'markers',
       marker: {
-        size: selectedPatientSamples.sample_values
+        size: selectedPatientSamples.sample_values,
+        color: selectedPatientSamples.otu_ids
       }
     };
 
@@ -83,8 +84,8 @@ function generatePlots(patientId) {
       }
     ];
 
-    var layout = { width: 600, height: 400 };
-    Plotly.newPlot('gauge', data, layout);
+    
+    Plotly.newPlot('gauge', data, config);
 
     //Start of demographic section
 
