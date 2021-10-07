@@ -1,12 +1,17 @@
 .jumbotron {
     background-color: #c7e7d7;
+    margin-bottom: 80px;
 
+}
+
+.white-text{
+    color: white;
 }
 
 .well {
     border: none;
     border-radius: 0px;
-    background-color: rgb(214, 214, 214);
+    background-color: rgb(122, 122, 122);
 }
 
 .panel-primary> .panel-heading {
