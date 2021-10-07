@@ -8,14 +8,12 @@ function generatePlots(patientId) {
     // var patientOTUs = data.samples.filter(row => row.otu_ids)[0]
     console.log('otus', selectedPatientSamples.otu_ids.slice(0, 10))
 
-    var config = {responsive: true}
+    /// var config is to add responsiveness to the charts
+    var config = { responsive: true }
 
     // Use sample_values as the x for the bar chart.
-
     // Use otu_ids as the y for the bar chart.
-
     // Use otu_labels as the hovertext for the chart.
-
 
     var trace1 = {
       x: selectedPatientSamples.sample_values.slice(0, 10).reverse(),
@@ -34,19 +32,13 @@ function generatePlots(patientId) {
 
     Plotly.newPlot('bar', data, layout, config);
 
+
     // Bubble Chart Begins Here
-
     // Use otu_ids for the x values.
-
     // Use sample_values for the y values.
-
     // Use sample_values for the marker size.
-
     // Use otu_ids for the marker colors.
-
     // Use otu_labels for the text values.
-
-
 
     var trace1 = {
       x: selectedPatientSamples.otu_ids,
@@ -61,7 +53,12 @@ function generatePlots(patientId) {
     var data = [trace1];
 
     var layout = {
-      title: 'Marker Size',
+      // title: 'Marker Size',
+      xaxis: {
+        title: {
+          text: 'OTU ID'
+        }
+      },
       showlegend: false,
       // height: 600,
       // width: 800
@@ -84,8 +81,9 @@ function generatePlots(patientId) {
       }
     ];
 
-    
+
     Plotly.newPlot('gauge', data, config);
+
 
     //Start of demographic section
 
